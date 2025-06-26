@@ -25,13 +25,7 @@ function getWeather() {
       console.error("Error fetching current weather data:", error)
       alert("Error fetching current weather data. Please try again.")
     })
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   displayWeather(data)
-  // })
-  // .catch((error) => {
-  //   console.error("Error fetching current weather data:", error)
-  //   alert("Error fetching current weather data. Please try again.")
+ 
 
   fetch(forecastUrl)
     .then((response) => {
@@ -40,18 +34,13 @@ function getWeather() {
       }
       return response.json()
     })
+    .then((data) => {
+      displayHourlyForecast(data.list)
+    })
     .catch((error) => {
       console.error("Error fetching hourly forecast data:", error)
       alert("Error fetching hourly forecast data. Please try again.")
     })
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   displayHourlyForecast(data.list)
-  // })
-  // .catch((error) => {
-  //   console.error("Error fetching hourly forecast data:", error)
-  //   alert("Error fetching hourly forecast data. Please try again.")
-  // })
 }
 
 function displayWeather(data) {
