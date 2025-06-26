@@ -11,7 +11,13 @@ function getWeather() {
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
 
   fetch(currentWeatherUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("City not found")
+      }
+
+      return response.json()
+    })
     .then((data) => {
       displayWeather(data)
     })
@@ -19,16 +25,33 @@ function getWeather() {
       console.error("Error fetching current weather data:", error)
       alert("Error fetching current weather data. Please try again.")
     })
+  // .then((response) => response.json())
+  // .then((data) => {
+  //   displayWeather(data)
+  // })
+  // .catch((error) => {
+  //   console.error("Error fetching current weather data:", error)
+  //   alert("Error fetching current weather data. Please try again.")
 
   fetch(forecastUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      displayHourlyForecast(data.list)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Forecast not found")
+      }
+      return response.json()
     })
     .catch((error) => {
       console.error("Error fetching hourly forecast data:", error)
       alert("Error fetching hourly forecast data. Please try again.")
     })
+  // .then((response) => response.json())
+  // .then((data) => {
+  //   displayHourlyForecast(data.list)
+  // })
+  // .catch((error) => {
+  //   console.error("Error fetching hourly forecast data:", error)
+  //   alert("Error fetching hourly forecast data. Please try again.")
+  // })
 }
 
 function displayWeather(data) {
@@ -71,12 +94,12 @@ function displayHourlyForecast(hourlyData) {
   const hourlyForecastDiv = document.getElementById("hourly-forecast")
   const next24Hours = hourlyData.slice(0, 8)
 
-  next24Hours.forEach(item => {
+  next24Hours.forEach((item) => {
     const dateTime = new Date(item.dt * 1000)
     const hour = dateTime.getHours()
-    const temperature = Math.rouund(item.main.temp - 273.15)
+    const temperature = Math.round(item.main.temp - 273.15)
     const iconCode = item.weather[0].icon
-    const iconUrl = `https:openweathermap.org/img/wn/${iconCode}.png`
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`
 
     const hourlyItemHtml = `
     <div class="hourly-item">
@@ -84,13 +107,12 @@ function displayHourlyForecast(hourlyData) {
       <img src="${iconUrl}" alt="Hourly Weather Icon">
       <span>${temperature}°C</span>
     </div>
-    `;
-    hourlyForecastDiv.innerHTML += hourlyItemHtml;
-
+    `
+    hourlyForecastDiv.innerHTML += hourlyItemHtml
   })
 }
 
 function showImage() {
-  const weatherIcon = document.getElementById('weather-icon');
-  weatherIcon.style.display = 'block';
+  const weatherIcon = document.getElementById("weather-icon")
+  weatherIcon.style.display = "block"
 }
