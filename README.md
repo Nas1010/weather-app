@@ -18,18 +18,46 @@ A simple weather app built with JavaScript, HTML, and CSS, using the OpenWeather
 
 - HTML5 & CSS3
 
+- Node.js & Express
+
 - OpenWeatherMap API
 
-# How to Use: 
-- Clone or download this repository: git@github.com:Nas1010/weather-app.git
+- dotenv for environment variable management
+
+# How to Use
+
+- Clone or download this repository:
+
+```
+git clone git@github.com:Nas1010/weather-app.git
+```
 
 - Obtain an API key from OpenWeatherMap.
 
-- Create a file named config.js in your project folder.
+- Create a .env file in the project root directory.
 
-- Inside config.js, add the following line (replace YOUR_API_KEY with your actual key): const API_KEY = 'YOUR_API_KEY';
+- Inside .env, add your API key like this (replace YOUR_API_KEY with your actual key):
 
-- Make sure to add config.js to your .gitignore file to keep your API key secure and prevent it from being pushed to public repositories. 
+```
+API_KEY=YOUR_API_KEY
+```
+- Make sure .env is listed in your .gitignore file to keep your API key secure.
 
+- Install dependencies:
 
+```
+npm install
+```
+- Start the server:
+
+```
+npm start
+```
+
+- Open your browser and navigate to:
+
+```
+http://localhost:3000
+```
+- Enter a city name and get the current weather and forecast.
 
