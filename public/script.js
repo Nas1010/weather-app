@@ -6,7 +6,7 @@ function getWeather() {
     return;
   }
 
-  fetch(`/api/weather?city=${encodeURIComponent(city)}`)
+  fetch(`https://weather-app-b2v2.onrender.com/api/weather?city=${encodeURIComponent(city)}`)
     .then(res => res.json())
     .then(data => {
       if (data.error) {
