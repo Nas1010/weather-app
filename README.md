@@ -61,3 +61,10 @@ http://localhost:3000
 ```
 - Enter a city name and get the current weather and forecast.
 
+# Deployment
+
+- Frontend deployed on Vercel
+
+- Backend hosted on Render
+
+- You can access the app here: weather-app-b2v2.onrender.com/
